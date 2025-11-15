@@ -1,4 +1,5 @@
-﻿using XBridge.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using XBridge.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

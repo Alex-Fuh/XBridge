@@ -1,0 +1,14 @@
+C:\Users\Alex\RiderProjects\XBridge\XBridge\bin\Debug\net10.0\XBridge.exe
+C:\Users\Alex\RiderProjects\XBridge\XBridge\bin\Debug\net10.0\XBridge.deps.json
+C:\Users\Alex\RiderProjects\XBridge\XBridge\bin\Debug\net10.0\XBridge.runtimeconfig.json
+C:\Users\Alex\RiderProjects\XBridge\XBridge\bin\Debug\net10.0\XBridge.dll
+C:\Users\Alex\RiderProjects\XBridge\XBridge\bin\Debug\net10.0\XBridge.pdb
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.AssemblyInfoInputs.cache
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.AssemblyInfo.cs
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.csproj.CoreCompileInputs.cache
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.dll
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\refint\XBridge.dll
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.pdb
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\XBridge.genruntimeconfig.cache
+C:\Users\Alex\RiderProjects\XBridge\XBridge\obj\Debug\net10.0\ref\XBridge.dll

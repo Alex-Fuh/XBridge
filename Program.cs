@@ -7,5 +7,4 @@
     );
 
     var app = builder.Build();
-    app.Run();
-
+    appRun();

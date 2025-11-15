@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/files/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/sources/">
+    <Project Path="sources/XBridge/XBridge.csproj" />
+  </Folder>
+</Solution>

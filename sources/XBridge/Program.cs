@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using XBridge.Data;
+using XBridge.Data.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace XBridge.Data;
+namespace XBridge.Data.Database;
 
 [PrimaryKey(nameof(Id))]
 public class Message

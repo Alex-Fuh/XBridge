@@ -7,5 +7,8 @@ builder.Services.AddDbContext<BridgeDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnectionString"))
 );
 
+Console.WriteLine("Press any key to exit...");
+
 var app = builder.Build();
 app.Run();
+

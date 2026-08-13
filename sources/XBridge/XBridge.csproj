@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Controller\" />
       <Folder Include="Data\Migrations\" />
     </ItemGroup>
 

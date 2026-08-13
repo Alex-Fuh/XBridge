@@ -4,18 +4,18 @@ namespace XBridge.Service;
 
 public class DataService
 {
-    private readonly BridgeDbContext db;
+    private readonly BridgeDbContext _dbContext;
     
     public DataService(BridgeDbContext db)
     {
-        this.db = db;
+        _dbContext = db;
     }
     
     public async Task<Project> AddProject(string name)
     {
         var newProject = new Project{ Name = name };
-        db.Projects.Add(newProject);
-        await db.SaveChangesAsync();
+        _dbContext.Projects.Add(newProject);
+        await _dbContext.SaveChangesAsync();
         return newProject;
     }
 }

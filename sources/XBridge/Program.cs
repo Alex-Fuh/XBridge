@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using XBridge;
+using XBridge.Commands;
 using XBridge.Data.Database;
 
 public class Program
@@ -10,6 +12,15 @@ public class Program
         builder.Services.AddDbContext<BridgeDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnectionString"))
         );
+
+        var commands = new List<ICommand>
+        {
+            new HelpCommand(),
+        };
+        var parser = new InputParser(commands);
+        
+        var userInput = new UserInput(parser);
+        userInput.ReadLine();
         
         var app = builder.Build();
         app.Run();

@@ -17,6 +17,7 @@ public class Program
         {
             new HelpCommand(),
         };
+        
         var parser = new InputParser(commands);
         
         var userInput = new UserInput(parser);

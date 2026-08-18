@@ -1,6 +1,12 @@
-﻿namespace XBridge.Service.Interface;
+﻿using XBridge.Data.Database;
 
-public class ICommitMessageService
+namespace XBridge.Service.Interface;
+
+public interface ICommitMessageService
 {
-    
+    public Task CreateNewMessage(String userInput);
+    public Task CheckIfProjectExists(String projectName);
+    public Task CreateNewProject(String projectName);
+    public Task<Project?> GetLastUsedProject();
+
 }

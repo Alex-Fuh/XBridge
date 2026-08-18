@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using XBridge;
 using XBridge.Commands;
+using XBridge.Controller;
 using XBridge.Data.Database;
+using XBridge.Service;
+using XBridge.Service.Interface;
 
 public class Program
 {
@@ -13,6 +16,10 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnectionString"))
         );
 
+        builder.Services.AddScoped<ICommitMessageService, CommitMessageService>();
+        
+        
+        
         var commands = new List<ICommand>
         {
             new HelpCommand(),
@@ -20,7 +27,6 @@ public class Program
         
         var parser = new InputParser(commands);
         new UserInput(parser).ReadLine();
-        
         
         var app = builder.Build();
         app.Run();

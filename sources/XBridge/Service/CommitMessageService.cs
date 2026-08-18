@@ -55,12 +55,6 @@ public class CommitMessageService : ICommitMessageService
         await _dbContext.SaveChangesAsync();
     }
     
-    public async Task<Project> GetOneProject(String projectName)
-    {
-        var project = await _dbContext.Projects.FindAsync(projectName);
-        return project;
-    }
-
     public async Task<Project?> GetLastUsedProject()
     {
         return await _dbContext.Message.OrderByDescending(x => x.CreatedAt).Select(x => x.Project)

@@ -1,18 +1,38 @@
-﻿namespace XBridge;
+﻿using XBridge.Service;
+
+namespace XBridge;
 
 public class UserInput
 {
+    private readonly InputParser _dictionary;
 
-    public static String ReadLine()
+    public UserInput(InputParser dictionary)
+    {
+        _dictionary = dictionary;
+    }
+
+    public void ReadLine()
     {
         var input = "";
         while (true)
         {
             Console.Write("> ");
             input = Console.ReadLine();
-            if (input == "") break;
+
+            if (input == "")
+            {
+                break;
+            }
+
+            var compareInputWithCommands = _dictionary.Find(input);
+            if (compareInputWithCommands != null)
+            {
+                compareInputWithCommands.Execute();
+            }
+            else
+            {
+                Console.WriteLine(input);
+            }
         }
-        return input;
     }
-    
 }

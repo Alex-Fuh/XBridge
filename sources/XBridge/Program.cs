@@ -19,9 +19,8 @@ public class Program
         };
         
         var parser = new InputParser(commands);
+        new UserInput(parser).ReadLine();
         
-        var userInput = new UserInput(parser);
-        userInput.ReadLine();
         
         var app = builder.Build();
         app.Run();

@@ -1,4 +1,5 @@
-﻿using XBridge.Data.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using XBridge.Data.Database;
 using XBridge.Service.Interface;
 
 namespace XBridge.Service;
@@ -15,13 +16,22 @@ public class CommitMessageService : ICommitMessageService
 
     public async Task CreateNewMessage(String userInput)
     {
+        var messageString = "";
+        
         if (userInput.Contains(":"))
         {
             var projectName = userInput.Split(':')[0]; 
             CheckIfProjectExists(projectName);
+            
         }
+
+        messageString = userInput.Split(':')[1];
+        var message = new Message()
+        {
+            ProjectMessage = messageString,
+            CreatedAt = DateTime.Now
+        };
         
-        // message commit
     }
     
     public async Task CheckIfProjectExists(String projectName)
@@ -45,4 +55,16 @@ public class CommitMessageService : ICommitMessageService
         await _dbContext.SaveChangesAsync();
     }
     
+    public async Task<Project> GetOneProject(String projectName)
+    {
+        var project = await _dbContext.Projects.FindAsync(projectName);
+        return project;
+    }
+
+    public async Task<Project?> GetLastUsedProject()
+    {
+        return await _dbContext.Message.OrderByDescending(x => x.CreatedAt).Select(x => x.Project)
+            .FirstOrDefaultAsync();
+    }
+
 }

@@ -5,6 +5,7 @@ namespace XBridge;
 public class UserInput
 {
     private readonly InputParser _dictionary;
+    
 
     public UserInput(InputParser dictionary)
     {

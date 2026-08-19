@@ -14,36 +14,52 @@ public class CommitMessageService : ICommitMessageService
         _dbContext = db;
     }
 
-    public async Task CreateNewMessage(String userInput)
+    public async Task<Project?> CreateNewMessage(String userInput, Project? project)
     {
         var messageString = "";
+        Project currentProject = project;
         
         if (userInput.Contains(":"))
         {
             var projectName = userInput.Split(':')[0]; 
-            CheckIfProjectExists(projectName);
-            
+            messageString = userInput.Split(':')[1];
+            currentProject = await CheckIfProjectExists(projectName);
+        }
+        else
+        {
+            messageString = userInput;
         }
 
-        messageString = userInput.Split(':')[1];
+        if (currentProject == null)
+        {
+            throw  new Exception("You must enter a valid project name");
+        }
+        
         var message = new Message()
         {
             ProjectMessage = messageString,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now,
+            Project = currentProject 
         };
+
+        _dbContext.Message.Add(message);
+        await _dbContext.SaveChangesAsync();
         
+        return currentProject;
     }
     
-    public async Task CheckIfProjectExists(String projectName)
+    public async Task<Project?> CheckIfProjectExists(String projectName)
     {
-        var project =  await _dbContext.Projects.FindAsync(projectName);
+        var project = await _dbContext.Projects.FirstOrDefaultAsync(p => p.Name == projectName);
         if (project == null)
         {
-            CreateNewProject(projectName);
+           project = await CreateNewProject(projectName);
         }
+        return project;
     }
     
-    public async Task CreateNewProject(String projectName)
+    
+    public async Task<Project?> CreateNewProject(String projectName)
     {
         var project = new Project()
         {
@@ -53,7 +69,9 @@ public class CommitMessageService : ICommitMessageService
         
         _dbContext.Projects.Add(project);
         await _dbContext.SaveChangesAsync();
+        return project;
     }
+    
     
     public async Task<Project?> GetLastUsedProject()
     {

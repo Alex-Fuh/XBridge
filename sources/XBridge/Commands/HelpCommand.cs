@@ -6,8 +6,9 @@ public class HelpCommand : ICommand
 {
     public string Name => "help";
 
-    public void Execute()
+    public Task Execute()
     {
-        Console.WriteLine("Commands: help");
+        Console.WriteLine("Commands: help, list");
+        return Task.CompletedTask;
     }
 }

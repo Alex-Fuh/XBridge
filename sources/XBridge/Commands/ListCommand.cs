@@ -5,21 +5,21 @@ namespace XBridge.Commands;
 
 public class ListCommand : ICommand
 {
-    private readonly IGetEntriesForTodayService _getEntriesForTodayService;
+    private readonly IMessageQueryService _messageQueryService;
 
-    public ListCommand(IGetEntriesForTodayService getEntriesForTodayService)
+    public ListCommand(IMessageQueryService messageQueryService)
     {
-        _getEntriesForTodayService = getEntriesForTodayService;
+        _messageQueryService = messageQueryService;
     }
 
     public string Name => "list";
 
     public async Task Execute()
     {
-        List<Message> test = await _getEntriesForTodayService.GetEntriesForToday();
+        List<Message> test = await _messageQueryService.GetEntriesForToday();
         foreach (var message in test)
         {
-            Console.WriteLine(message.Project.Name + " : " + message.ProjectMessage);
+            Console.WriteLine(message.CreatedAt + " " + message.Project.Name + " : " + message.ProjectMessage);
         }
     }
 }

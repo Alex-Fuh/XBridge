@@ -7,18 +7,20 @@ namespace XBridge;
 public class UserInput
 {
     private readonly InputParser _dictionary;
-    private readonly ICommitMessageService _commitMessageService;
+    private readonly IProjectService _projectService;
+    private readonly IMessageService _messageService;
     
 
-    public UserInput(InputParser dictionary,  ICommitMessageService commitMessageService)
+    public UserInput(InputParser dictionary,  IProjectService projectService,  IMessageService messageService)
     {
         _dictionary = dictionary;
-        _commitMessageService = commitMessageService;
+        _projectService = projectService;
+        _messageService = messageService;
     }
 
     public async Task ReadLine()
     {
-        var currentProject = await _commitMessageService.GetLastUsedProject();
+        var currentProject = await _projectService.GetLastUsedProject();
         
         var input = "";
         
@@ -39,7 +41,7 @@ public class UserInput
             }
             else
             {
-               currentProject = await _commitMessageService.CreateNewMessage(input, currentProject);
+               currentProject = await _messageService.CreateNewMessage(input, currentProject);
             }
         }
     }

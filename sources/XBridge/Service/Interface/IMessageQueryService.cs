@@ -2,7 +2,7 @@
 
 namespace XBridge.Service.Interface;
 
-public interface IGetEntriesForTodayService
+public interface IMessageQueryService
 {
     public Task<List<Message>> GetEntriesForToday();
 }

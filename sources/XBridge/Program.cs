@@ -15,18 +15,16 @@ public class Program
             options.UseSqlite(builder.Configuration.GetConnectionString("DbConnectionString"))
         );
 
-        builder.Services.AddScoped<ICommitMessageService, CommitMessageService>();
-        builder.Services.AddScoped<IGetEntriesForTodayService, GetEntriesForTodayService>();
+        builder.Services.AddScoped<IMessageService, MessageService>();
+        builder.Services.AddScoped<IProjectService, ProjectService>();
+        builder.Services.AddScoped<IMessageQueryService, MessageQueryService>();
         builder.Services.AddHostedService<MyService>();
         builder.Services.AddScoped<ICommand, HelpCommand>();
         builder.Services.AddScoped<ICommand, ListCommand>();
         
         var app = builder.Build();
-
          await MigrateAsync(app);
-        
          await app.RunAsync();
-       
     }
     
     public static async Task MigrateAsync(IHost host)
@@ -45,7 +43,6 @@ public class Program
             );
             return;
         }
-
         await using (dbContext)
         {
             logger.LogInformation(
@@ -55,31 +52,23 @@ public class Program
             await dbContext.Database.MigrateAsync();
         }
     }
-    
-    
-    
 }
-
 public class MyService : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider;
-
     public MyService(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
         using var scope = _serviceProvider.CreateScope();
-        
         var commands = scope.ServiceProvider.GetRequiredService<IEnumerable<ICommand>>();
-        var service  = scope.ServiceProvider.GetRequiredService<ICommitMessageService>();
+        var projectService = scope.ServiceProvider.GetRequiredService<IProjectService>();
+        var messageService  = scope.ServiceProvider.GetRequiredService<IMessageService>();
         
         var parser = new InputParser(commands);
-         await new UserInput(parser, service).ReadLine();
-        
+         await new UserInput(parser, projectService, messageService).ReadLine();
     }
 }
 

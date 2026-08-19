@@ -4,16 +4,15 @@ using XBridge.Service.Interface;
 
 namespace XBridge.Service;
 
-public class GetEntriesForTodayService : IGetEntriesForTodayService
+public class MessageQueryService : IMessageQueryService
 {
-    
     private readonly BridgeDbContext _dbContext;
     
-    public GetEntriesForTodayService(BridgeDbContext db)
+    public MessageQueryService(BridgeDbContext db)
     {
         _dbContext = db;
     }
-
+    
     public async Task<List<Message>> GetEntriesForToday()
     {
         return await _dbContext.Message

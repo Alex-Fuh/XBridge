@@ -2,11 +2,9 @@
 
 namespace XBridge.Service.Interface;
 
-public interface ICommitMessageService
+public interface IProjectService
 {
-    public Task<Project?> CreateNewMessage(String userInput, Project? project);
     public Task<Project?> CheckIfProjectExists(String projectName);
     public Task<Project?> CreateNewProject(String projectName);
     public Task<Project?> GetLastUsedProject();
-
 }

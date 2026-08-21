@@ -29,7 +29,7 @@ public class UserInput
             Console.Write("> ");
             input = Console.ReadLine();
 
-            if (input == "")
+            if (string.IsNullOrEmpty(input))
             {
                 break;
             }
